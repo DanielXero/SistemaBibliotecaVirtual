@@ -97,9 +97,24 @@ public class LibroService {
     }
 
     /**
-     * Busca un libro en la biblioteca por su título.
+     * Busca un libro en la biblioteca por su genero.
      *
-     * @param titulo El título del libro a buscar.
+     * @param genero El genero del libro a buscar.
+     * @return El libro encontrado o null si no se encuentra.
+     */
+    public Libro buscarLibroGenero(String genero) {
+        for (Libro libro : this.biblioteca) {
+            if (libro.getGenero().equalsIgnoreCase(genero)) {
+                return libro;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Busca un libro en la biblioteca por su titulo.
+     *
+     * @param titulo El titulo del libro a buscar.
      * @return El libro encontrado o null si no se encuentra.
      */
     public Libro buscarLibroTitulo(String titulo) {

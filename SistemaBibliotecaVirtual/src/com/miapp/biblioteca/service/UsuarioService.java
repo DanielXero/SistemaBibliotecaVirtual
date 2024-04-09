@@ -43,6 +43,18 @@ public class UsuarioService {
     }
 
     /**
+     * Imprime la lista de todos los usuarios y los libros prestados.
+     */
+    public void listarLibrosPrestados() {
+        for (Usuario user : this.usuarios) {
+            System.out.println(user.getNombre());
+            for (Libro libro : user.getLibrosPrestados()) {
+                System.out.println(libro.getTitulo());
+            }
+        }
+    }
+
+    /**
      * Verifica si la lista de usuarios está vacía.
      *
      * @return true si la lista está vacía, false en caso contrario.

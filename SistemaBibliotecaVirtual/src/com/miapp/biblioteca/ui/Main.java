@@ -28,11 +28,12 @@ public class Main {
         int opcion;
 
         do {
-            System.out.println("=== Sistema Biblioteca Virtual ===");
+            System.out.println("\n=== Sistema Biblioteca Virtual ===");
             System.out.println("1 -  Gestionar Libros");
             System.out.println("2 -  Gestionar Usuarios");
             System.out.println("3 -  Prestamos");
             System.out.println("4 -  Devoluciones");
+            System.out.println("5 -  Listar Libros Prestados");
             System.out.println("0 -  Salir");
             System.out.println("=== Seleccione una Opción ===");
             System.out.print("Opción: ");
@@ -53,14 +54,14 @@ public class Main {
                     } else {
                         System.out.println("\nListado de Libros");
                         ls.listarBiblioteca();
-                        System.out.print("\nIngrese el nombre del libro: ");
-                        String nombreLibro = sc.nextLine();
+                        System.out.print("\nIngrese el nombre del titulo: ");
+                        String nombreTitulo = sc.nextLine();
                         System.out.println("\nListado de usuarios");
                         us.listarUsuarios();
                         System.out.print("\nIngrese el ID del usuario a prestar: ");
                         int idUser = Integer.parseInt(sc.nextLine());
 
-                        Libro libro = ls.buscarLibroTitulo(nombreLibro);
+                        Libro libro = ls.buscarLibroTitulo(nombreTitulo);
                         Usuario user = us.buscarUsuarioId(idUser);
 
                         if (libro == null || user == null) {
@@ -95,6 +96,14 @@ public class Main {
 
                     }
                     break;
+                case 5:
+                    System.out.println("\n\t\t***** Listar Libros Prestados *****\n");
+                    if (us.isListaUsuariosVacia() || ls.isBibliotecaVacia()) {
+                        System.out.println("Biblioteca vacía o no existe usuarios registrados");
+                    } else {
+                        us.listarLibrosPrestados();
+                    }
+                    break;
                 case 0:
                     System.out.println("Muchas Gracias");
                     break;
@@ -116,7 +125,7 @@ public class Main {
         int opcion;
 
         do {
-            System.out.println("=== Gestionar Usuarios ===");
+            System.out.println("\n=== Gestionar Usuarios ===");
             System.out.println("1 -  Crear Usuario");
             System.out.println("2 -  Actualizar Usuario");
             System.out.println("3 -  Buscar Usuario por ID");
@@ -212,11 +221,11 @@ public class Main {
         int opcion;
 
         do {
-            System.out.println("=== Gestionar Libros ===");
+            System.out.println("\n=== Gestionar Libros ===");
             System.out.println("1 -  Crear Libro");
             System.out.println("2 -  Actualizar Libro");
             System.out.println("3 -  Buscar Libro por ISBN");
-            System.out.println("4 -  Buscar Libro por Título");
+            System.out.println("4 -  Buscar Libro por Genero");
             System.out.println("5 -  Listar Libros");
             System.out.println("6 -  Eliminar Libro");
             System.out.println("0 -  Salir");
@@ -274,17 +283,17 @@ public class Main {
 
                     break;
                 case 4:
-                    System.out.println("\n\t\t***** Buscar Libro por Título *****\n");
+                    System.out.println("\n\t\t***** Buscar Libro por Genero *****\n");
                     if (ls.isBibliotecaVacia()) {
                         System.out.println("La biblioteca está vacía");
                     } else {
-                        System.out.print("Ingrese el título del libro: ");
-                        String tituloLibro = sc.nextLine();
+                        System.out.print("Ingrese el genero del libro: ");
+                        String generoLibro = sc.nextLine();
 
-                        if (ls.buscarLibroTitulo(tituloLibro) == null) {
-                            System.out.println("El libro " + tituloLibro + " no existe!!!");
+                        if (ls.buscarLibroGenero(generoLibro) == null) {
+                            System.out.println("El genero " + generoLibro + " no existe!!!");
                         } else {
-                            System.out.println(ls.buscarLibroTitulo(tituloLibro));
+                            System.out.println(ls.buscarLibroTitulo(generoLibro));
                         }
                     }
 
