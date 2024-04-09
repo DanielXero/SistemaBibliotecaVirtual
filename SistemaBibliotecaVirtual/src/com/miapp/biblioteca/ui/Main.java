@@ -34,6 +34,7 @@ public class Main {
             System.out.println("3 -  Prestamos");
             System.out.println("4 -  Devoluciones");
             System.out.println("5 -  Listar Libros Prestados");
+            System.out.println("6 -  Mostrar Calificaciones");
             System.out.println("0 -  Salir");
             System.out.println("=== Seleccione una Opción ===");
             System.out.print("Opción: ");
@@ -54,7 +55,7 @@ public class Main {
                     } else {
                         System.out.println("\nListado de Libros");
                         ls.listarBiblioteca();
-                        System.out.print("\nIngrese el nombre del titulo: ");
+                        System.out.print("\nIngrese el titulo del libro: ");
                         String nombreTitulo = sc.nextLine();
                         System.out.println("\nListado de usuarios");
                         us.listarUsuarios();
@@ -67,6 +68,7 @@ public class Main {
                         if (libro == null || user == null) {
                             System.out.println("El usuario o el libro no existe!!!");
                         }else {
+
                             us.prestarLibro(user, libro);
                         }
 
@@ -79,11 +81,14 @@ public class Main {
                                 " o no existe usuarios.");
                     } else {
 
-                        System.out.print("\nIngrese el nombre del libro a devolver: ");
+                        System.out.print("\nIngrese el titulo del libro a devolver: ");
                         String nombreLibro = sc.nextLine();
 
                         System.out.print("\nIngrese el ID del usuario que pidió prestado: ");
                         int idUser = Integer.parseInt(sc.nextLine());
+
+                        System.out.print("Ingrese una calificacion del libro: ");
+                        String calificacion = sc.nextLine();
 
                         Libro libro = ls.buscarLibroTitulo(nombreLibro);
                         Usuario user = us.buscarUsuarioId(idUser);
@@ -91,7 +96,7 @@ public class Main {
                         if (libro == null || user == null) {
                             System.out.println("El usuario o el libro no existe!!!");
                         }else {
-                            us.devolverLibro(user, libro);
+                            us.devolverLibro(user, libro, calificacion);
                         }
 
                     }
@@ -102,6 +107,14 @@ public class Main {
                         System.out.println("Biblioteca vacía o no existe usuarios registrados");
                     } else {
                         us.listarLibrosPrestados();
+                    }
+                    break;
+                case 6:
+                    System.out.println("\n\t\t***** Mostrar Calificaciones *****\n");
+                    if (us.isListaUsuariosVacia() || ls.isBibliotecaVacia()) {
+                        System.out.println("Biblioteca vacía o no existe usuarios registrados");
+                    } else {
+                        us.mostrarCalifaciones();
                     }
                     break;
                 case 0:
@@ -131,7 +144,7 @@ public class Main {
             System.out.println("3 -  Buscar Usuario por ID");
             System.out.println("4 -  Listar Usuario");
             System.out.println("5 -  Eliminar Usuario");
-            System.out.println("0 -  Salir");
+            System.out.println("0 -  Volver al Menu Principal");
             System.out.println("=== Seleccione una Opción ===");
             System.out.print("Opción: ");
             opcion = Integer.parseInt(sc.nextLine());
@@ -228,7 +241,7 @@ public class Main {
             System.out.println("4 -  Buscar Libro por Genero");
             System.out.println("5 -  Listar Libros");
             System.out.println("6 -  Eliminar Libro");
-            System.out.println("0 -  Salir");
+            System.out.println("0 -  Volver al Menu Principal");
             System.out.println("=== Seleccione una Opción ===");
             System.out.print("Opción: ");
             opcion = Integer.parseInt(sc.nextLine());

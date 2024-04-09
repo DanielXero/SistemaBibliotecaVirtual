@@ -54,6 +54,16 @@ public class UsuarioService {
         }
     }
 
+    public void mostrarCalifaciones() {
+
+        for (Usuario user : this.usuarios) {
+            System.out.println(user.getNombre());
+            for (String elem : user.getCalificaciones()) {
+                System.out.println(elem);
+            }
+        }
+    }
+
     /**
      * Verifica si la lista de usuarios está vacía.
      *
@@ -112,6 +122,7 @@ public class UsuarioService {
         if (libro.isDisponible()) {
             user.getLibrosPrestados().add(libro);
             libro.setDisponible(false);
+
             System.out.println("El libro ha sido prestado al usuario: " + user.getNombre());
         } else {
             System.out.println("El libro que buscas no se encuentra disponible");
@@ -124,10 +135,12 @@ public class UsuarioService {
      * @param user  El usuario que devuelve el libro.
      * @param libro El libro a devolver.
      */
-    public void devolverLibro(Usuario user, Libro libro) {
+    public void devolverLibro(Usuario user, Libro libro,  String calificación) {
         if (user.getLibrosPrestados().contains(libro)) {
             user.getLibrosPrestados().remove(libro);
             libro.setDisponible(true);
+            user.getCalificaciones().add(libro.getTitulo().concat(": ").concat(calificación));
+            System.out.println("El libro ha sido devuleto exitosamente");
         } else {
             System.out.println("El libro no fue prestado a este usuario");
         }

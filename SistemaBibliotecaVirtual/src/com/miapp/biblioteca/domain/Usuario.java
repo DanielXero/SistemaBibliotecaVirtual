@@ -12,6 +12,7 @@ public class Usuario {
     private int id;
     private String nombre;
     private ArrayList<Libro> librosPrestados;
+    private ArrayList<String> calificaciones;
     /**
      * Contador estático para llevar la cuenta de los libros creados y asignar ID automáticamente.
      */
@@ -34,6 +35,7 @@ public class Usuario {
         this();
         this.nombre = nombre;
         this.librosPrestados = new ArrayList<>();
+        this.calificaciones = new ArrayList<>();
     }
 
 
@@ -73,6 +75,10 @@ public class Usuario {
      */
     public ArrayList<Libro> getLibrosPrestados() {
         return this.librosPrestados;
+    }
+
+    public ArrayList<String> getCalificaciones() {
+        return this.calificaciones;
     }
 
 
