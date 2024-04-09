@@ -1,7 +1,7 @@
 package com.miapp.biblioteca.domain;
 
 /**
- * Esta clase representa un Libro con su
+ * Esta clase representa un Libro con sus metodos y atributos
  */
 public class Libro {
 
